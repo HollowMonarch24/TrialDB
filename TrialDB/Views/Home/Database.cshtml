@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<?php 
+include '../includes/config.php';
+
+// Attempt select query execution
+$stmt = $link->prepare("SELECT * FROM proposals_table WHERE id=?");
+$stmt->bind_param('s', $_GET['id']);
+    $stmt->execute();
+$proposals = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+
+    if ($proposals) {
+?>
+    <table class='table table-bordered'>
+        <tr>
+    <th>Organisation</th>
+    <th>Project</th>
+    <th>Proposal Date</th>
+    <th>Date Received</th>
+    <th>Notes</th>
+        </tr>
+    <?php foreach($proposals as $row): ?>
+        <tr>
+    <td><?=$row['company']?></td>
+    <td><?=$row['project']?></td>
+    <td><?=$row['proposal_date']?></td>
+    <td><?=$row['date_received']?></td>
+    <td><?=$row['notes']?></td>
+
+        </tr>
+    <?php endforeach; ?>
+    </table>
+<?php
+    } 
+    
+    else {
+    echo 'No records matching your query were found.';
+}
+
+
+}
+<h1>Database</h1>

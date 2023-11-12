@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table class="table">
+    <tr>
+        <th>AdminId</th>
+        <th>username</th>
+        <th>password</th>
+        <th>fname</th>
+        <th>lname</th>
+        <th>contactNum</th>
+        <th>email</th>
+        <th></th>
+    </tr>
+
+    @foreach (var AdminCrdentials in Model)
+    {
+        <tr>
+            <td>@AdminCrdentials.fName @AdminCrdentials.lName</td>
+            <td>@AdminCrdentials.email</td>
+            <td>@AdminCrdentials.AdminId</td>
+            <td>@AdminCrdentials.username</td>
+            <td>@AdminCrdentials.password</td>
+            <td>@AdminCrdentials.contactnum</td>
+
+            
+        </tr>
+    }
+
+</table>
